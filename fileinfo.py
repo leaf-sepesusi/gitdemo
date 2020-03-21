@@ -33,3 +33,26 @@ try:
 except FileNotFoundError as e:
     print(e)
     sys.exit()
+
+file_stats = os.stat(file_name)
+# create a dictionary to hold file info
+file_nfo = {
+    'fname': file_name,
+    'fsize': file_stats[stat.ST_SIZE],
+    'f_lm': time.strftime("%d/%m%Y %I:%M:%S %p",
+                          time.localtime(file_stats[stat.ST_MTIME]))
+    'f_la': time.strftime("%d/%m%Y %I:%M:%S %p",
+                          time.localtime(file_stats[stat.ST_ATIME]))
+    'f_ct': time.strftime("%d/%m%Y %I:%M:%S %p",
+                          time.localtime(file_stats[stat.ST_CTIME]))
+    'no_of_lines': count,
+    't_char': t_char
+}
+
+print("\nfile name =", file_info['fname'])
+print("file size =", file_info['fsize'], "bytes")
+print("last modified =", file_info['f_lm'])
+print("last accessed =", file_info['f_la'])
+print("creation time =", file_info['f_ct'])
+print("Total number of lines are =", file_info['no_of_lines'])
+print("Total number of characters are =", file_info['t_char'])
